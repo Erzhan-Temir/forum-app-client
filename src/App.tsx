@@ -5,7 +5,7 @@ import LeftMenu from './components/LeftMenu';
 import Main from './components/Main';
 import Nav from './components/Nav';
 import RightMenu from './components/RightMenu';
-import SideBar from './components/SideBar';
+import SideBar from './components/sidebar/SideBar';
 
 const mainApp = () => {
   return (
