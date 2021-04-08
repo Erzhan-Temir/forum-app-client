@@ -1,9 +1,8 @@
 import React, {FC} from 'react';
 import {useWindowDimensions} from '../../hooks/useWindowDimensions';
 import {TABLET_WIDTH} from '../../constants/constants';
-import SideBarMenus from './SideBarMenus';
 
-const SideBar: FC = () => {
+const RightMenu: FC = () => {
   const {width} = useWindowDimensions();
 
   if (width <= TABLET_WIDTH) {
@@ -11,10 +10,8 @@ const SideBar: FC = () => {
   }
 
   return (
-    <div className="sidebar">
-      <SideBarMenus />
-    </div>
+    <div className="rightmenu">Right Menu</div>
   );
 }
 
-export default SideBar;
+export default RightMenu;

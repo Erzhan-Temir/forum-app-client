@@ -1,8 +1,8 @@
 import React, {FC, useState, useEffect} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
-import {TABLET_WIDTH} from '../constants/constants';
-import {useWindowDimensions} from '../hooks/useWindowDimensions';
+import {TABLET_WIDTH} from '../../constants/constants';
+import {useWindowDimensions} from '../../hooks/useWindowDimensions';
 import ReactModal from "react-modal";
 import "./Nav.css";
 import SideBarMenus from './sidebar/SideBarMenus';

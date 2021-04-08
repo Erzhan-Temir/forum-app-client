@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
-import {useWindowDimensions} from '../hooks/useWindowDimensions';
-import {TABLET_WIDTH} from '../constants/constants';
-import Category from '../models/Category';
-import {getCategories} from '../services/DataService';
+import {useWindowDimensions} from '../../hooks/useWindowDimensions';
+import {TABLET_WIDTH} from '../../constants/constants';
+import Category from '../../models/Category';
+import {getCategories} from '../../services/DataService';
 
 const LeftMenu: FC = () => {
   const {width} = useWindowDimensions();

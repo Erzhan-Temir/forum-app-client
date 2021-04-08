@@ -1,28 +1,21 @@
 import React from 'react';
 import './App.css';
 import {Switch, Route} from "react-router-dom";
-import LeftMenu from './components/LeftMenu';
-import Main from './components/Main';
-import Nav from './components/Nav';
-import RightMenu from './components/RightMenu';
-import SideBar from './components/sidebar/SideBar';
+import Home from "./components/routes/Home";
 
-const mainApp = () => {
-  return (
-    <div className="App">
-      <Nav />
-      <SideBar />
-      <LeftMenu />
-      <Main />
-      <RightMenu />
-    </div>
-  )
-};
-
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function App() {
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const renderHome = (props: any) => <Home {...props} />;
+
   return (
     <Switch>
-      <Route exact path="/" render={mainApp} />
+      <Route exact path="/" render={renderHome} />
+      <Route
+        path="/categorythreads/:categoryId"
+        render={renderHome}
+      />
     </Switch>
   );
 }
