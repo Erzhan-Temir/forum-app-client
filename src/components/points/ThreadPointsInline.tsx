@@ -5,7 +5,6 @@ import { ThreadPointsBarProps } from "./ThreadPointsBar";
 
 const ThreadPointsInline: FC<ThreadPointsBarProps> = ({
   points,
-  responseCount,
 }) => {
   return (
     <React.Fragment>
