@@ -19,7 +19,6 @@ const Login: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
   const reduxDispatch = useDispatch();
 
   useEffect(() => {
-    // todo: replace with GraphQL call
     reduxDispatch({
       type: UserProfileSetType,
       payload: {
