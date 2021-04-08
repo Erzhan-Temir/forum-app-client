@@ -6,6 +6,7 @@ import {
 } from "../../../common/validators/PasswordValidator";
 
 interface PasswordComparisonProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dispatch: React.Dispatch<any>;
   password: string;
   passwordConfirm: string;

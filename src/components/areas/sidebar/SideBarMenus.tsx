@@ -1,30 +1,19 @@
-import React, {FC, useState, useEffect} from 'react';
+import React, {FC, useState} from 'react';
 import {faRegistered, faSignInAlt, faSignOutAlt, faUser} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {AppState} from '../../../store/AppState';
-import {UserProfileSetType} from '../../../store/user/Reducer';
 import "./SideBarMenus.css";
 import Registration from '../../auth/Registration';
 import Login from '../../auth/Login';
 import Logout from '../../auth/Logout';
+import {Link} from 'react-router-dom';
 
 const SideBarMenus: FC = () => {
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
   const user = useSelector((state: AppState) => state.user);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch({
-      type: UserProfileSetType,
-      payload: {
-        id: 1,
-        userName: "testUser",
-      },
-    });
-  }, [dispatch]);
 
   const onClickToggleRegister = () => {
     setShowRegister(!showRegister);
@@ -43,7 +32,8 @@ const SideBarMenus: FC = () => {
       <ul>
         <li>
           <FontAwesomeIcon icon={faUser} />
-          <span className="menu-name">{user?.userName}
+          <span className="menu-name">
+            <Link to={`/userprofile/${user?.id}`}>{user?.userName}</Link>
           </span>
         </li>
         <li>
