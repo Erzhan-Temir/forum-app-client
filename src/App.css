@@ -43,23 +43,19 @@
 .sidebar {
   min-height: var(--min-screen-height);
   grid-area: sidebar;
-  background-color: aliceblue;
 }
 
 .leftmenu {
   grid-area: leftmenu;
-  background-color: skyblue;
 }
 
 .rightmenu {
   grid-area: rightmenu;
-  background-color: coral;
 }
 
 .content {
   min-height: var(--min-screen-height);
   grid-area: content;
-  background-color: blanchedalmond;
 }
 
 .screen-root-container {

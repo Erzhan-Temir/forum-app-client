@@ -1,20 +1,17 @@
-export const UserProfileSetType = "USER_PROFILE_SET";
+import User from "../../models/User";
 
-export interface UserProfilePayload {
-  id: string;
-  userName: string;
-}
+export const UserProfileSetType = "USER_PROFILE_SET";
 
 export interface UserProfileAction {
   type: string;
-  payload: UserProfilePayload | null;
+  payload: User | null;
 }
 
 export const UserProfileReducer = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   state: any = null,
   action: UserProfileAction
-): UserProfilePayload | null => {
+): User | null => {
   switch (action.type) {
     case UserProfileSetType:
       return action.payload;
