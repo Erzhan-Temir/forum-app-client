@@ -3,7 +3,6 @@ import React, {FC, useState, useEffect} from 'react';
 import MainHeader from "./MainHeader";
 import {useHistory, useParams} from "react-router-dom";
 import ThreadCard from "./ThreadCard";
-// import {getThreadsByCategory} from "../../../services/DataService";
 import Category from "../../../models/Category";
 import {gql, useLazyQuery} from '@apollo/client';
 

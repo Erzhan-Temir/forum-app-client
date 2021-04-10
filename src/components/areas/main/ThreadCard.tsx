@@ -8,6 +8,7 @@ import {useWindowDimensions} from "../../../hooks/useWindowDimensions";
 import ThreadPointsBar from "../../points/ThreadPointsBar";
 import ThreadPointsInline from "../../points/ThreadPointsInline";
 import "./ThreadCard.css";
+import RichEditor from "../../editor/RichEditor";
 
 interface ThreadCardProps {
   thread: Thread;
@@ -18,13 +19,13 @@ const ThreadCard: FC<ThreadCardProps> = ({thread}) => {
   const {width} = useWindowDimensions();
 
   const onClickShowThread = () => {
-    history.push("/thread" + thread.id);
+    history.push("/thread/" + thread.id);
   };
 
-  const getResponses = (thread: Thread) => {
+  const getResponseCount = (thread: Thread) => {
     if (width <= 768) {
       return (
-        <label
+        <span
           style={{
             marginRight: ".5em",
           }}
@@ -38,7 +39,7 @@ const ThreadCard: FC<ThreadCardProps> = ({thread}) => {
               marginTop: "-.25em",
             }}
           />
-        </label>
+        </span>
       );
     }
     return null;
@@ -55,10 +56,9 @@ const ThreadCard: FC<ThreadCardProps> = ({thread}) => {
             <strong>{thread.category.name}</strong>
           </Link>
           <span className="username-header" style={{marginLeft: ".5em"}}>
-            {thread.userName}
+            {thread.user.userName}
           </span>
         </div>
-
         <div className="question">
           <div
             onClick={onClickShowThread}
@@ -67,36 +67,29 @@ const ThreadCard: FC<ThreadCardProps> = ({thread}) => {
           >
             <strong>{thread.title}</strong>
           </div>
-
           <div
             className="threadcard-body"
             onClick={onClickShowThread}
             data-thread-id={thread.id}
           >
-            <div>{thread.body}</div>
+            <RichEditor existingBody={thread.body} readOnly={true} />
           </div>
-
           <div className="threadcard-footer">
             <span
               style={{
                 marginRight: ".5em",
               }}
             >
-              <label>
-                {thread.views}
-                <FontAwesomeIcon icon={faEye} className="icon-lg" />
-              </label>
+              {thread.views}
+              <FontAwesomeIcon icon={faEye} className="icon-lg" />
             </span>
-            <span>
-              {width <= 768 ? (
-                <ThreadPointsInline points={thread?.points || 0} />
-              ) : null}
-              {getResponses(thread)}
-            </span>
+            {width <= 768 ? (
+              <ThreadPointsInline points={thread?.points || 0} />
+            ) : null}
+            {getResponseCount(thread)}
           </div>
         </div>
       </div>
-
       <ThreadPointsBar
         points={thread?.points || 0}
         responseCount={

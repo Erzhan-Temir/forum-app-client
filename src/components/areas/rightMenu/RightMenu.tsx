@@ -1,18 +1,34 @@
-import React, {FC, useState, useEffect} from 'react';
-import {useWindowDimensions} from '../../../hooks/useWindowDimensions';
-import {getTopCategories} from "../../../services/DataService";
-import {TABLET_WIDTH} from '../../../constants/constants';
+import React, {FC, useState, useEffect} from "react";
+import {useWindowDimensions} from "../../../hooks/useWindowDimensions";
 import TopCategory from "./TopCategory";
 import groupBy from "lodash/groupBy";
-import "./RightMenu.css"
+import "./RightMenu.css";
+import {gql, useQuery} from "@apollo/client";
+
+const GetTopCategoryThread = gql`
+  query getTopCategoryThread {
+    getTopCategoryThread {
+      threadId
+      categoryId
+      categoryName
+      title
+    }
+  }
+`;
 
 const RightMenu: FC = () => {
+  const {data: categoryThreadData} = useQuery(GetTopCategoryThread);
   const {width} = useWindowDimensions();
-  const [topCategories, setTopCategories] = useState<Array<JSX.Element> | undefined>();
+  const [topCategories, setTopCategories] = useState<
+    Array<JSX.Element> | undefined
+  >();
 
   useEffect(() => {
-    getTopCategories().then((res) => {
-      const topCatThreads = groupBy(res, "category");
+    if (categoryThreadData && categoryThreadData.getTopCategoryThread) {
+      const topCatThreads = groupBy(
+        categoryThreadData.getTopCategoryThread,
+        "categoryName"
+      );
       const topElements = [];
       // eslint-disable-next-line prefer-const
       for (let key in topCatThreads) {
@@ -20,16 +36,13 @@ const RightMenu: FC = () => {
         topElements.push(<TopCategory key={key} topCategories={currentTop} />);
       }
       setTopCategories(topElements);
-    });
-  }, []);
+    }
+  }, [categoryThreadData]);
 
-  if (width <= TABLET_WIDTH) {
+  if (width <= 768) {
     return null;
   }
-
-  return (
-    <div className="rightmenu rightmenu-container">{topCategories}</div>
-  );
-}
+  return <div className="rightmenu rightmenu-container">{topCategories}</div>;
+};
 
 export default RightMenu;

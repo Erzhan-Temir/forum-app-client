@@ -8,14 +8,13 @@ import Category from "../../models/Category";
 
 const LeftMenu: FC = () => {
   const categoriesState = useSelector((state: AppState) => state.categories);
-  const { width } = useWindowDimensions();
+  const {width} = useWindowDimensions();
   const [categories, setCategories] = useState<JSX.Element>(
     <div>Left Menu</div>
   );
 
   useEffect(() => {
     if (categoriesState) {
-      console.log(categoriesState);
       const cats = categoriesState.map((cat: Category) => {
         return (
           <li key={cat.id}>

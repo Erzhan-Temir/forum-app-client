@@ -15,13 +15,11 @@ const Nav: FC = () => {
     ReactModal.setAppElement('body');
   }, []);
 
-  const onClickToggle = (evt: React.MouseEvent<Element, MouseEvent>) => {
+  const onClickToggle = () => {
     setShowMenu(!showMenu);
   };
 
-  const onRequestClose = (
-    e: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>
-  ) => {
+  const onRequestClose = () => {
     setShowMenu(false);
   };
 

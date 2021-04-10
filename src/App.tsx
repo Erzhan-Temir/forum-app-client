@@ -50,7 +50,7 @@ function App() {
     <Switch>
       <Route exact path="/" render={renderHome} />
       <Route path="/categorythreads/:categoryId" render={renderHome} />
-      <Route path="/thread/:id" render={renderThread} />
+      <Route path="/thread/:id?" render={renderThread} />
       <Route path="/userprofile/:id" render={renderUserProfile} />
     </Switch>
   );

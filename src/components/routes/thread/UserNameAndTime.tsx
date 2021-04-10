@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { getTimePastIfLessThanDay } from "../../../common/dates";
+import React, {FC} from "react";
+import {getTimePastIfLessThanDay} from "../../../common/dates";
 
 interface UserNameAndTimeProps {
   userName?: string;
@@ -13,7 +13,7 @@ const UserNameAndTime: FC<UserNameAndTimeProps> = ({
   return (
     <span>
       <strong>{userName}</strong>
-      <label style={{ marginLeft: "1em" }}>
+      <label style={{marginLeft: "1em"}}>
         {lastModifiedOn ? getTimePastIfLessThanDay(lastModifiedOn) : ""}
       </label>
     </span>
